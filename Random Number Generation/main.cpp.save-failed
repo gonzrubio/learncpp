@@ -1,0 +1,72 @@
+#include <iostream>
+#include <stdio.h>
+#include <cstdlib> // for std::rand() and std::srand()
+#include <ctime>
+
+using namespace std;
+
+unsigned int PRNG()
+{
+    // our initial starting seed is 5323
+    static unsigned int seed{ 5323 };
+
+    // Take the current seed and generate a new value from it
+    // Due to our use of large constants and overflow, it would be
+    // hard for someone to casually predict what the next number is
+    // going to be from the previous one.
+    seed = 8253729 * seed + 2396403;
+
+    // Take the seed and return a value between 0 and 32767
+    return seed % 32768;
+}
+
+void printRandom(int iter, int col, bool method, int seed)
+{
+    srand(seed) ;
+
+    if (!method)
+    {
+        cout << "Proprietary PRNG: " << endl ;
+        for (int kk = 1 ; kk <= iter; kk++)
+        {
+            cout << PRNG() << '\t' ;
+            if (kk % col == 0)
+                cout << endl ;
+        }
+    }
+    else
+    {
+        cout << "Built-in PRNG: " << endl ;
+        for (int kk = 1 ; kk <= iter; kk++)
+        {
+            cout << rand() << '\t' ;
+            if (kk % col == 0)
+                cout << endl ;
+        }
+    }
+    cout << endl ;
+}
+
+int main()
+{
+    int cols = 5 ;
+    int maxiter = 10 ;
+    printRandom(maxiter, cols, true, 6969) ;
+    printRandom(maxiter, cols, false, 6969) ;
+
+    // As you can see, these sequences are always identical since the numbers
+    // can be predicted in a deterministic way from the seed number.
+    // One way to get around this is the slock system. std::time() returns the seconds
+    // since midnight Jan 1 1970.
+
+    srand(static_cast<unsigned int>(time(nullptr))) ;
+
+    for (int ii = 1 ; i <= maxiter ; i++)
+    {
+        cout << rand() << '\t' ;
+        if (ii % 5 == 0)
+            cout << endl ;
+    }
+
+    return 0;
+}

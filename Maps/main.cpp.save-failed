@@ -1,0 +1,30 @@
+#include <iostream>
+#include <map>
+
+using namespace std;
+
+int maxWords = 100 ;
+
+void countOcurrences(string &arr)
+{
+    map<string, int> ocurrences ;
+    for (int ii = 0 ; ii < sizeof(arr) / sizeof(arr[0]) ; ii++)
+    {
+        if (0 < ocurrences(arr[ii]) )
+            ocurrences(arr[ii]) += 1 ;
+        else
+            ocurrences(arr[ii]) = 1 ;
+    }
+    cout << ocurrences.size() ;
+}
+
+int main()
+{
+
+    string greet[] = {"hello","hello","hello","hello","hola","hola","hola","hola","alo","alo","nihao","bonjour","bonjour","bonjour"} ;
+
+    countOcurrences(greet) ; // Make map conatining the ocurrences and their counts.
+
+
+    return 0;
+}

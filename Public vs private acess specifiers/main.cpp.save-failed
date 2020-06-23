@@ -1,0 +1,87 @@
+#include <iostream>
+
+/*
+    Public memebers are memebers of a class or struct that can be accessed
+    from outside of the struct or class. Members of a struct are public by default.
+
+    Private memebers are memebers of a class or struct that can only be accessed
+    by other memebers of the class. Members of a class are private by default.
+
+    We can make private members public using the public keyword.
+    The public keyword followed by a colon is an access specifier.
+
+    Rule: Make member variables private and memeber functions public unless have a good reason.
+
+    Note: Acess controls work on per-class basis, not a per-object basis.
+    This means that when a fucntion has acess to the private members of a class,
+    it can acess the private members of any object of that class type that it can see.
+
+    Members of a class are private by default, this means that they can ONLY be accessed by
+    other mebers inside the class and can NOT be accessed by members outside the class.
+
+    Structs vs classes:
+        - Classes default members to private and structs to public.
+        - Structs inherit from other classes publicly and classes inherit privately.
+*/
+
+class DateClass
+{
+    int m_year ;
+    int m_day ;
+    int m_month ;
+
+public: // Public members defined belowe. These can be accessed from outside the class.
+    void setDate(int month, int day, int year)
+    {
+        // setDate can access the private members of the class because it is a member of the class.
+        // This means we can indirectly access those private members from outside the class using this memeber function.
+        m_year = year ;
+        m_day = day ;
+        m_month = month ;
+    }
+
+    void printDate()
+    {
+        std::cout << m_month << "/" << m_day << "/" << m_year ;
+    }
+
+    void copyFrom(const DateClass &d)
+    {
+        // Note: The parameter is a const struct passed by reference, by good practice/rule.
+        // The type of the parameter is DateClass.
+        // Acess controls work on a class basis. We can access ALL the private members of ANY
+        // object of that class type that it can see - DateClass in this case.
+        // This memeber function can acess the private members of any other DateClass object & assigns them to itself.
+        // Note: we access those memebers using the memeber operator (.).
+        m_year = d.m_year ;
+        m_day = d.m_day ;
+        m_month = d.m_month ;
+    }
+};
+
+void ex0()
+{
+    DateClass dateOG ; // Cant initialize directly because those memebers are private.
+    // The memeber funcition setDate gives us inderect access to them.
+    dateOG.setDate(2020,01,04) ;
+    std::cout << "dateOG: " ;
+    dateOG.printDate() ;
+
+    // New object of the same class
+    DateClass dateSecond ;
+    dateSecond.copyFrom(dateOG) ; // Pass by reference.
+    std::cout << "\ndateSecond: " ;
+    dateSecond.printDate() ;
+
+    dateOG.setDate(2020,20,04) ;
+    std::cout << "\ndateOG: " ;
+    dateOG.printDate() ;
+}
+
+int main()
+{
+    // ex0() ;
+    ex1() ;
+
+    return 0;
+}

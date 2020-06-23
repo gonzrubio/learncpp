@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1585332528 source:c:\users\gonzalo\documents\c++\basics\arrays, strings, pointers, and references quiz\main.cpp
+	<algorithm>
+	<iostream>
+	<array>
+	<numeric>
+	<string>
+	<vector>
+

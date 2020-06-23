@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1585239871 source:c:\users\gonzalo\documents\c++\basics\standard library algorithms\main.cpp
+	<iostream>
+	<algorithm>
+	<array>
+

@@ -1,0 +1,27 @@
+#include <iostream>
+
+/*
+    A pointer to a pointer is a pointer that holds the adress of another pointer.
+*/
+
+using namespace std;
+
+void ptrtoptr()
+{
+    cout << "Inside ptrtoptr() ..." << endl ;
+    int tmp{69} ;
+    int *ptr{&tmp} ;        // Pointer to an int.
+    int **ptrptr{&ptr} ;    // Pointer to a pointer.
+
+    cout << "tmp = " << tmp << endl ;
+    cout << "&tmp = " << &tmp << " = ptr = " << ptr << endl ;
+
+}
+
+int main()
+{
+    ptrtoptr() ;
+
+
+    return 0;
+}

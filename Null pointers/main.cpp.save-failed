@@ -1,0 +1,20 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    cout << "Like normal variables, pointers are not initialized when instantiated." << endl;
+    cout << "Unless a value is assigned, pointers will point to some garbage adress by default." << endl;
+    int *ptr69;
+    cout << "For example 'int *ptr69;' will point to: " << ptr69 << endl ;
+
+    cout << endl << "Besides memory adresses, pointers can hold a null value. Meaning that they are not " << endl ;
+    cout << " pointing at anything. A pointer holding the null value is called a null pointer." << endl ;
+
+    // Declare and initialize a null pointer.
+    int *nllptr{0} ;
+    cout << "'int *nllptr{0}; is a null pointer. It points to: " << nllptr << endl ;
+
+    return 0;
+}
