@@ -116,13 +116,12 @@ void ex2()
 class IntPair
 {
 public:
-    // Nested type alias.
-    using number_t = int ;
+    using number_t = int ; // Member type or Nested type alias.
     // memeber variables.
     number_t m_a ;
     number_t m_b ;
     // Member functions.
-    void sett(int first, int second)
+    void sett(const int first, const int second)
     {
         m_a = first ;
         m_b = second ;
@@ -144,8 +143,7 @@ void ex3()
     IntPair p1 ;
     p1.sett(1,1) ;
 
-    IntPair p2 ;
-    p2.sett(2,2) ;
+    IntPair p2{2,2} ;
 
     p1.printter() ;
     p2.printter() ;
