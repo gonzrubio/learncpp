@@ -108,7 +108,7 @@ void ex2()
     std::cout << calculator.add(3, 4) << '\n' ; // 7
     std::cout << calculator.add(99, 24) << '\n' ; // 123
 
-    for (result : calculator.m_resultHistory)
+    for (Calculator::number_t result : calculator.m_resultHistory)
         std::cout << result << " "  ;
 
 }
@@ -137,9 +137,9 @@ public:
 
 void ex3()
 {
-    // Create a class called IntPair that holds two integers.
-    // create member function named “set” that will let you assign values to the integers.
-    // one named “print” that will print the values of the variables.
+    // Create a class called IntPair that holds two integers. This class should have two member variables to hold the integers.
+    // Create member function named “set” that will let you assign values to the integers.
+    // Create a member function named “print” that will print the values of the variables.
 
     IntPair p1 ;
     p1.sett(1,1) ;
