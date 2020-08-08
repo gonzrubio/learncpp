@@ -1,1 +1,3 @@
-My notes and solutions to excercises from https://www.learncpp.com/
+# learncpp
+
+My notes and solutions to excercises from [learncpp](https://www.learncpp.com/)
