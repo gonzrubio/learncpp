@@ -10,7 +10,7 @@
     by other memebers of the class. Members of a class are private by default.
 
     We can make private members public using the public keyword.
-    The public keyword followed by a colon is an access specifier.
+    The public/private keyword are acces specifiers and are followed by a semicolon.
 
     Rule: Make member variables private and memeber functions public unless have a good reason.
 
@@ -33,12 +33,12 @@
 */
 
 class DateClass
-{
+{   // member variables are set private by default.
     int m_year ;
     int m_day ;
     int m_month ;
 
-public: // Public members defined belowe. These can be accessed from outside the class.
+public: // Public members defined below. These can be accessed from outside the class.
     void setDate(int month, int day, int year)
     {
         // setDate can access the private members of the class because it is a member of the class.
@@ -55,12 +55,11 @@ public: // Public members defined belowe. These can be accessed from outside the
 
     void copyFrom(const DateClass &d)
     {
-        // Note: The parameter is a const struct passed by reference, by good practice/rule.
-        // The type of the parameter is DateClass.
-        // Acess controls work on a class basis. We can access ALL the private members of ANY
+        // Note: The parameter is a const DateClass object passed by reference, by good practice/rule.
+        // Acess controls work on a class basis, not per object basis. We can access ALL the private members of ANY
         // object of that class type that it can see - DateClass in this case.
         // This memeber function can acess the private members of any other DateClass object & assigns them to itself.
-        // Note: we access those memebers using the memeber operator (.).
+        // Note: we access those memebers using the memeber acess operator (.).
         m_year = d.m_year ;
         m_day = d.m_day ;
         m_month = d.m_month ;
@@ -69,21 +68,23 @@ public: // Public members defined belowe. These can be accessed from outside the
 
 void ex0()
 {
-    DateClass dateOG ; // Cant initialize directly because those memebers are private.
-    // The memeber funcition setDate gives us inderect access to them.
-    dateOG.setDate(2020,01,04) ;
-    std::cout << "dateOG: " ;
-    dateOG.printDate() ;
+    DateClass date ; // Cant initialize directly because those memebers are private.
+    // The memeber funcition setDate gives us inderect access to them (public interface).
+    date.setDate(2020,01,04) ;
+    std::cout << "date: " ;
+    date.printDate() ;
 
     // New object of the same class
-    DateClass dateSecond ;
-    dateSecond.copyFrom(dateOG) ; // Pass by reference.
-    std::cout << "\ndateSecond: " ;
-    dateSecond.printDate() ;
+    DateClass date_copy ;
+    date_copy.copyFrom(date) ; // Pass by reference.
+    std::cout << "\ndate_copy: " ;
+    date_copy.printDate() ;
 
-    dateOG.setDate(2020,20,04) ;
-    std::cout << "\ndateOG: " ;
-    dateOG.printDate() ;
+    date.setDate(2020,20,04) ;
+    std::cout << "\ndate: " ;
+    date.printDate() ;
+    std::cout << "\ndate_copy: " ;
+    date_copy.printDate() ;
 }
 
 class Point3d
@@ -98,7 +99,7 @@ public:
     }
     void print()
     {
-        std::cout << "<" << m_x << ", " << m_y << ", " << m_z << ">\n" ;
+        std::cout << "\n<" << m_x << ", " << m_y << ", " << m_z << ">\n" ;
     }
     bool isEqual(const Point3d &p)
     {
@@ -109,13 +110,14 @@ public:
     }
 };
 
-
-void ex1()
+void Q2()
 {
+    /// a)
     Point3d point ;             // Instantiate a Point3d object.
     point.setValues(1, 2, 3) ;  // Initialize the private members acessed through the public memeber function.
     point.print() ;             // Print values using the print memeber function.
 
+    /// b)
     Point3d point1;
     point1.setValues(1, 2, 3);
 
@@ -154,9 +156,9 @@ public:
     {
         // pushes a value on the stack.
         // push() should return false if the array is already full, and true otherwise.
-        if ( m_next == m_arr.size() ) return false ;
+        if ( (unsigned)m_next == m_arr.size() ) return false ;
         else
-            m_arr[m_next++] = val ; // Inser then increase.
+            m_arr[(unsigned)m_next++] = val ; // InserT, then increase index.
             return true ;
     }
 
@@ -165,7 +167,7 @@ public:
         // pops a value off the stack and returns it.
         // If there are no values on the stack, the code should exit via an assert.
         assert (m_next > 0 && "Can not pop empty stack") ;
-        return m_arr[--m_next] ;
+        return m_arr[(unsigned)--m_next] ; // Decrease index to move to last element, then return.
     }
 
     void print()
@@ -173,14 +175,12 @@ public:
         // A public member function named print() that prints all the values in the stack.
         std::cout << "( " ;
         for (int element{0} ; element < m_next ; element++)
-            std::cout << m_arr[element] << " " ;
-        std::cout << " )\n" ;
+            std::cout << m_arr[(unsigned)element] << " " ;
+        std::cout << ")\n" ;
     }
-
-
 };
 
-void ex2()
+void Q3()
 {
     Stack stack;
 	stack.reset();
@@ -203,9 +203,8 @@ void ex2()
 
 int main()
 {
-    // ex0() ;
-    // ex1() ;
-    ex2() ;
-
+    ex0() ;
+    Q2() ;
+    Q3() ;
     return 0;
 }
