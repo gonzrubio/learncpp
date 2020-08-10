@@ -1,15 +1,12 @@
-#include <iostream>
-#include <cassert>
-#include <string>
-
 /*
-    We can initialize private mebers of a class using constructors.
+    We can initialize private members of a class using constructors.
     A constructor is a member function that is automatically called when
-    an objetc of that class is instantiated.
+    an object of that class is instantiated.
 
     1) Constructors must have the same name as the class (with the same capitalization).
     2) Constructors have no return type (not even void).
 
+    Rule: Favor brace initialization to initialize class objects.
     Rule: If you have constructors in your class and need a constructor that does nothing
     use = default.
 
@@ -19,6 +16,10 @@
     2) Constructors can be used ot initialize objects.
     Rule: Always initialize all member variables in your objects.
 */
+
+#include <iostream>
+#include <cassert>
+#include <string>
 
 class Fraction
 {
@@ -88,9 +89,9 @@ public:
 } ;
 
 void ex1()
-{
+{   /// Classes containing classes.
     // A class may contain other classes as variables. By default, when the outer
-    // class is constructed, the meber variables will have their default constructors called.
+    // class is constructed, the member variables will have their default constructors called.
     // This happens before the body of the constructor executes.
     B b ;
 
@@ -124,7 +125,8 @@ public:
         m_radius = radius ;
         m_color = "Black" ;
     }
-    // Constructor with both parameters
+    // Constructor with both parameters.
+    // handles no parameter, color only, and color + radius cases.
     Ball(const std::string &color, double radius)
     {
         m_radius = radius ;
@@ -136,7 +138,7 @@ public:
     }
 };
 
-void ex2()
+void Q1()
 {
 	Ball def{};
 	def.print();
@@ -155,7 +157,7 @@ int main()
 {
     ex0() ;
     ex1() ;
-    ex2() ;
+    Q1() ;
 
     // Note: If we dont declare a default constructor, the compiler will create an empty default public constructor
     // This means the object will be instantiable with no parameters. If you have defined other constructors

@@ -1,15 +1,12 @@
-#include <iostream>
-#include <cassert>
-#include <string>
-
 /*
-    We can initialize private mebers of a class using constructors.
+    We can initialize private members of a class using constructors.
     A constructor is a member function that is automatically called when
-    an objetc of that class is instantiated.
+    an object of that class is instantiated.
 
     1) Constructors must have the same name as the class (with the same capitalization).
     2) Constructors have no return type (not even void).
 
+    Rule: Favor brace initialization to initialize class objects.
     Rule: If you have constructors in your class and need a constructor that does nothing
     use = default.
 
@@ -19,6 +16,10 @@
     2) Constructors can be used ot initialize objects.
     Rule: Always initialize all member variables in your objects.
 */
+
+#include <iostream>
+#include <cassert>
+#include <string>
 
 class Fraction
 {
