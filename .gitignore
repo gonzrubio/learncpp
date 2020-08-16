@@ -1,6 +1,6 @@
-/public/static/bin/
-**/*.depend
-**/*.cbp 
-**/*.layout 
-**/obj/
-**/*.cpp.save-failed
+/bin/
+/*.depend
+/*.cbp 
+/*.layout 
+/obj/
+/*.cpp.save-failed

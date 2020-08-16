@@ -1,6 +1,0 @@
-bin/*
-*.depend
-*.cbp 
-*.layout 
-obj/*
-*.cpp.save-failed
