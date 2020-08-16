@@ -1,9 +1,0 @@
-# depslib dependency file v1.0
-1585790639 source:c:\users\gonzalo\documents\c++\basics\public vs private acess specifiers\main.cpp
-	<iostream>
-
-1597012501 source:c:\users\gonzalo\documents\c++\learncpp\chapter8_basic_oop\public_vs_private_access_specifiers\main.cpp
-	<iostream>
-	<array>
-	<cassert>
-
