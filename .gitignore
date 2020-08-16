@@ -1,6 +1,6 @@
-### CodeBlocks ###
+### Code::Blocks ###
 
-# Specific to CodeBlocks IDE
+# specific to CodeBlocks IDE
 **/*.depend
 **/*.cbp 
 **/*.layout 
@@ -9,4 +9,8 @@
 # generated directories
 **/obj/
 **/bin/
+
+# others
+**/*.exe
+**/*.o
 
