@@ -1,4 +1,4 @@
-**/bin/
+/public/static/bin/
 **/*.depend
 **/*.cbp 
 **/*.layout 
