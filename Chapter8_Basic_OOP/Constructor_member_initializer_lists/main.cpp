@@ -31,8 +31,8 @@ private:
 public:
     // Constructor has default values and allows caller to pass in the initialization values.
     // The constructor gets called and the memeber variables are initialized using an initialization list.
-    Something(int m_value1 = 1, double m_value2 = 2.2, char m_value3 = 'c', const int m_value4 = 69)
-        : m_value1{ m_value1 }, m_value2{ m_value2 }, m_value3{ m_value3 }, m_value4{m_value4} //Uniform initializattion.
+    Something(int value1 = 1, double value2 = 2.2, char value3 = 'c', const int value4 = 69)
+        : m_value1{value1}, m_value2{value2}, m_value3{value3}, m_value4{value4} //Uniform initializattion.
     {
         // No need for assignment here.
         // m_value = 1 ; // This is assignment, not initialization.
@@ -82,8 +82,8 @@ private:
     component_t m_blue ;
     component_t m_alpha ;
 public:
-    RGBA(component_t m_red = 0, component_t m_green = 0, component_t m_blue = 0, component_t m_alpha = 255)
-        :  m_red{m_red}, m_green{m_green}, m_blue{m_blue}, m_alpha{m_alpha}
+    RGBA(component_t red = 0, component_t green = 0, component_t blue = 0, component_t alpha = 255)
+        :  m_red{red}, m_green{green}, m_blue{blue}, m_alpha{alpha}
     {
     }
     void print(){
