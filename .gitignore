@@ -1,6 +1,12 @@
-**/bin
+### CodeBlocks ###
+
+# Specific to CodeBlocks IDE
 **/*.depend
 **/*.cbp 
 **/*.layout 
-**/obj
 **/*.cpp.save-failed
+
+# generated directories
+**/obj/
+**/bin/
+
