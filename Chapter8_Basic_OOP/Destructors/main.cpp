@@ -10,6 +10,8 @@
     3) The destructor has no return type.
 
     Rule 2) implies that there can be one destructor per class as they can not be overloaded.
+
+    Destructors may call other memeber functions since the object isn't destroyed until after the destructor executes.
 */
 
 class IntArray
@@ -36,18 +38,18 @@ public:
 
 void ex0()
 {
-	IntArray ar(10); // allocate 10 integers
+	IntArray ar{10}; // allocate 10 integers
 	for (int count{ 0 }; count < ar.getLength(); ++count)
 		ar.setValue(count, count+1);
 
 	std::cout << "The value of element 5 is: " << ar.getValue(5) << '\n';
 
-	// ON the first line we instantiate a new IntArray class object names ar,
+	// On the first line we instantiate a new IntArray class object named ar,
 	// and pass in a length of 10. This calls the constructor which dynamically
 	// allocates memory for the array member. We must use dynamically allocation
 	// here because we do no know the length at compile time (the caller decides that).
 
-	// At the end of main(, ar goes out of scope. This causes the ~IntArray() destructor to
+	// At the end of main, ar goes out of scope. This causes the ~IntArray() destructor to
     // be called, which deleted the array we created with the constructor.
 }
 
@@ -65,7 +67,7 @@ public:
 
     ~Simple()
     {
-        std::cout << "Destructing Simple" << m_nID << '\n';
+        std::cout << "Destructing Simple " << m_nID << '\n';
     }
 
     int getID() { return m_nID; }
