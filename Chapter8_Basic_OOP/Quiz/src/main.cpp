@@ -13,12 +13,11 @@
 // can only acess static member variables.
 // We can create anonymous class objects for the purpose of evaluating in an expression, or passing a return value.
 
+#include "HelloWorld.h"
 #include "Point2d.h"
 #include <iostream>
 
 void question1() {
-    // Change function distanceTo from a member function to a non-member friend function that
-    // takes two Points as parameters. Also rename it “distanceFrom”.
     Point2d first{};
     Point2d second{ 3.0, 4.0 };
     first.print();
@@ -26,7 +25,12 @@ void question1() {
     std::cout << "Distance between two points: " << distanceFrom(first, second) << '\n';
 }
 
+void question2() {
+    HelloWorld hello{};
+    hello.print();
+}
 int main()
 {
     question1();
+    question2();
 }
