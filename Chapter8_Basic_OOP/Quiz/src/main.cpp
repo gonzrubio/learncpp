@@ -14,6 +14,8 @@
 // We can create anonymous class objects for the purpose of evaluating in an expression, or passing a return value.
 
 #include "HelloWorld.h"
+#include "Monster.h"
+#include "MonsterGenerator.h"
 #include "Point2d.h"
 #include <iostream>
 
@@ -29,8 +31,17 @@ void question2() {
     HelloWorld hello{};
     hello.print();
 }
+
+void question3() {
+    Monster skeleton{ Monster::Type::skeleton, "Bones", "*rattle*", 4 };
+    skeleton.print();
+    Monster m{ MonsterGenerator::generateMonster() };
+    m.print();
+}
+
 int main()
 {
-    question1();
-    question2();
+    //question1();
+    //question2();
+    question3();
 }
