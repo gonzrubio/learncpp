@@ -13,9 +13,12 @@
 // can only acess static member variables.
 // We can create anonymous class objects for the purpose of evaluating in an expression, or passing a return value.
 
+#include "Card.h"
+#include "Deck.h"
 #include "HelloWorld.h"
 #include "Monster.h"
 #include "MonsterGenerator.h"
+#include "Player.h"
 #include "Point2d.h"
 #include <iostream>
 
@@ -39,9 +42,81 @@ void question3() {
     m.print();
 }
 
-int main()
-{
+bool playerWantsHit() {
+    while (true) {
+        std::cout << "(h) to hit, or (s) to stand: ";
+        char ch{};
+        std::cin >> ch;
+
+        switch (ch) {
+        case 'h':
+            return true;
+        case 's':
+            return false;
+        }
+    }
+}
+
+// Returns true if the player went bust. False otherwise.
+bool playerTurn(Deck& deck, Player& player) {
+    while (true)     {
+        std::cout << "You have: " << player.score() << '\n';
+
+        if (player.isBust()) {
+            return true;
+        } else {
+            if (playerWantsHit()) {
+                player.drawCard(deck);
+            } else {
+                // The player didn't go bust.
+                return false;
+            }
+        }
+    }
+}
+
+// Returns true if the dealer went bust. False otherwise.
+bool dealerTurn(Deck& deck, Player& dealer) {
+    while (dealer.score() < minimumDealerScore) {
+        dealer.drawCard(deck);
+    }
+    return dealer.isBust();
+}
+
+bool playBlackjack(Deck& deck) {
+    Player dealer{};
+    dealer.drawCard(deck);
+
+    std::cout << "The dealer is showing: " << dealer.score() << '\n';
+
+    Player player{};
+    player.drawCard(deck);
+    player.drawCard(deck);
+
+    if (playerTurn(deck, player)) {
+        return false;
+    }
+
+    if (dealerTurn(deck, dealer)) {
+        return true;
+    }
+    return (player.score() > dealer.score());
+}
+
+void question4() {
+    Deck deck{};
+    deck.shuffle();
+
+    if (playBlackjack(deck)) {
+        std::cout << "You win!\n";
+    } else {
+        std::cout << "You lose!\n";
+    }
+}
+
+int main() {
     //question1();
     //question2();
-    question3();
+    //question3();
+    question4();
 }
