@@ -3,6 +3,8 @@
 #include <functional>
 #include <vector>
 
+class Doctor;
+
 class Patient {
 private:
 	std::string m_name;

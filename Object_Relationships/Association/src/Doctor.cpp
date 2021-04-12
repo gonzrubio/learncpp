@@ -1,8 +1,11 @@
 #include "Doctor.h"
 #include <iostream>
 
-void Doctor::add_patient(const Patient& patient) {
+void Doctor::add_patient(Patient& patient) {
 	m_patients.push_back(patient);
+
+	// The patient should also add the doctor.
+	patient.add_doctor(*this);
 }
 
 std::ostream& operator<<(std::ostream& out, const Doctor& doctor) {
