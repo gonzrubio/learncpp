@@ -14,10 +14,25 @@ optimizations), which means your objects may or may not be destructed properly p
 
 Much like functions that differ only in their return values can not be overloaded, functions differing
 only in their exception specification can not be overloaded.
+
+The noexcept operator can be used inside functions. It takes an expression as an argument, and returns
+true or false if the compiler thinks it will throw an exception or not. The noexcept operator is
+checked statically at compile-time, and doesn’t actually evaluate the input expression.
+
+Use the noexcept specifier in specific cases where you want to express a no-fail or no-throw guarantee.
 */
 
 #include <iostream>
 
 int main() {
+	void foo() { throw - 1; }
+	void boo() {};
+	void goo() noexcept {};
+	struct S {};
 
+	constexpr bool b1{ noexcept(5 + 3) }; // true; ints are non-throwing
+	constexpr bool b2{ noexcept(foo()) }; // false; foo() throws an exception
+	constexpr bool b3{ noexcept(boo()) }; // false; boo() is implicitly noexcept(false)
+	constexpr bool b4{ noexcept(goo()) }; // true; goo() is explicitly noexcept(true)
+	constexpr bool b5{ noexcept(S{}) };   // true; a struct's default constructor is noexcept by default
 }
